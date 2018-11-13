@@ -1,0 +1,8 @@
+## FOLDERS
+node_modules/
+coverage/
+
+### FILES
+npm-debug.log
+dist/*.js
+dist/*.css

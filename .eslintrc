@@ -1,0 +1,15 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "it": false,
+    "jest": false,
+    "document": false,
+    "describe": false,
+    "expect": false,
+    "window": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "beforeAll": false,
+    "afterAll": false
+  }
+}
