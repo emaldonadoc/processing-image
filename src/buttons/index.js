@@ -1,4 +1,9 @@
-import { getCropper, destroyCropper, buildCropper } from '../cropper';
+import {
+  rotateCropper,
+  getCroppedB64FromCanvas,
+  destroyCropper,
+  buildCropper,
+} from '../cropper';
 
 const singleButton = (value, id) => {
   const button = document.createElement('INPUT');
@@ -14,7 +19,7 @@ const rotateRightButton = () => {
   rightButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    getCropper().rotate(45);
+    rotateCropper(45);
   });
   return rightButton;
 };
@@ -24,7 +29,7 @@ const rotateLeftButton = () => {
   leftButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    getCropper().rotate(-45);
+    rotateCropper(-45);
   });
   return leftButton;
 };
@@ -34,8 +39,8 @@ const cropButton = () => {
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const data = getCropper().getCroppedCanvas();
-    document.getElementById('app').src = data.toDataURL();
+    const base64Cropped = getCroppedB64FromCanvas();
+    document.getElementById('app').src = base64Cropped;
     destroyCropper();
     buildCropper('app');
   });

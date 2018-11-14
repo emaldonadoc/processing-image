@@ -2,7 +2,9 @@ import Cropper from 'cropperjs';
 
 let cropper = null;
 
-export const getCropper = () => cropper;
+export const getCroppedB64FromCanvas = () => cropper.getCroppedCanvas().toDataURL();
+
+export const rotateCropper = grades => cropper.rotate(grades);
 
 export const destroyCropper = () => {
   cropper.destroy();
