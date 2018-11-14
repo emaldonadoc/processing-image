@@ -39,8 +39,7 @@ const cropButton = () => {
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const base64Cropped = getCroppedB64FromCanvas();
-    document.getElementById('app').src = base64Cropped;
+    document.getElementById('app').src = getCroppedB64FromCanvas();
     destroyCropper();
     buildCropper('app');
   });
