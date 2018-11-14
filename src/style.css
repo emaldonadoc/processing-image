@@ -1,0 +1,20 @@
+img {
+  max-width: 100%;
+}
+
+.image-container {
+  max-width: 600px;
+  height: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buttons-container {
+  padding-top: 10px;
+}
+
+.edition-button {
+  margin: 0px 2px;
+}
