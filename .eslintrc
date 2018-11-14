@@ -11,5 +11,8 @@
     "afterEach": false,
     "beforeAll": false,
     "afterAll": false
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
   }
 }
