@@ -28,8 +28,8 @@ const rotateLeftButton = (cropper) => {
   return leftButton;
 };
 
-const saveButton = (cropper) => {
-  const save = singleButton('Save', 'save-button');
+const cropButton = (cropper) => {
+  const save = singleButton('Crop', 'crop-button');
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -44,6 +44,6 @@ export const buildButtons = (container, cropper) => {
   buttonsContainer.className = 'buttons-container';
   buttonsContainer.appendChild(rotateRightButton(cropper));
   buttonsContainer.appendChild(rotateLeftButton(cropper));
-  buttonsContainer.appendChild(saveButton(cropper));
+  buttonsContainer.appendChild(cropButton(cropper));
   container.appendChild(buttonsContainer);
 };
