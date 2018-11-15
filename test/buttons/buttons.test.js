@@ -25,7 +25,7 @@ describe('Edition image buttons', () => {
   });
 
   it('Should render edition buttons', () => {
-    const buttons = document.querySelectorAll('input[type="button"]');
+    const buttons = document.querySelectorAll('.edition-button');
     expect(buttons.length).toBe(3);
   });
 

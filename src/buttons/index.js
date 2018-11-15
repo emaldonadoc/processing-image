@@ -5,17 +5,25 @@ import {
   buildCropper,
 } from '../cropper';
 
-const singleButton = (value, id) => {
-  const button = document.createElement('INPUT');
-  button.value = value;
+const fontAwesomeMap = {
+  'rotate-right-button': 'repeat',
+  'rotate-left-button': 'undo',
+  'crop-button': 'cut',
+};
+
+const singleButton = (id) => {
+  const button = document.createElement('DIV');
   button.className = 'edition-button';
   button.id = id;
-  button.type = 'button';
+  const i = document.createElement('I');
+  i.classList.add('fa');
+  i.classList.add(`fa-${fontAwesomeMap[id]}`);
+  button.appendChild(i);
   return button;
 };
 
 const rotateRightButton = () => {
-  const rightButton = singleButton('Rotate Right', 'rotate-right-button');
+  const rightButton = singleButton('rotate-right-button');
   rightButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -25,7 +33,7 @@ const rotateRightButton = () => {
 };
 
 const rotateLeftButton = () => {
-  const leftButton = singleButton('Rotate Left', 'rotate-left-button');
+  const leftButton = singleButton('rotate-left-button');
   leftButton.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -35,7 +43,7 @@ const rotateLeftButton = () => {
 };
 
 const cropButton = () => {
-  const save = singleButton('Crop', 'crop-button');
+  const save = singleButton('crop-button');
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -48,9 +56,9 @@ const cropButton = () => {
 
 export const buildButtons = (container) => {
   const buttonsContainer = document.createElement('DIV');
-  buttonsContainer.className = 'buttons-container';
-  buttonsContainer.appendChild(rotateRightButton());
+  buttonsContainer.className = 'buttons-edition-container';
   buttonsContainer.appendChild(rotateLeftButton());
+  buttonsContainer.appendChild(rotateRightButton());
   buttonsContainer.appendChild(cropButton());
-  container.appendChild(buttonsContainer);
+  container.prepend(buttonsContainer);
 };
