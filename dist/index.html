@@ -12,9 +12,15 @@
 </head>
 
 <body>
-  <div class="image-container">
-    <img id="app" src="./skull.jpg">
-  </div>
+  <button id="load-test" onclick="loadImage(event)">LOAD IMAGE</button>
 </body>
+
+<script>
+  function loadImage(e){
+    e.preventDefault();
+    e.stopPropagation();
+    app.default({ imgUrl: './skull.jpg'});
+  }
+</script>
 
 </html>

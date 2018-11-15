@@ -13,7 +13,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     publicPath: './dist/',
     compress: false,
-    port: 3031
+    port: 3031,
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: 'style.css' }),

@@ -3,9 +3,15 @@ import './style.css';
 
 import { buildButtons } from './buttons';
 
-window.onload = () => {
-  console.log('page has been loaded');
+export default ({ imgUrl, saveCallback, deleteCallback }) => {
+  const imageContainer = document.createElement('DIV');
+  imageContainer.className = 'image-container';
+  const img = document.createElement('IMG');
+  img.src = imgUrl;
+  img.id = 'app';
+  imageContainer.appendChild(img);
+  document.body.appendChild(imageContainer);
+
   buildCropper('app');
-  const container = document.querySelector('.image-container');
-  buildButtons(container);
+  buildButtons(imageContainer);
 };
