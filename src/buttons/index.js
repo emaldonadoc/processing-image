@@ -8,7 +8,7 @@ import {
 const fontAwesomeMap = {
   'rotate-right-button': 'repeat',
   'rotate-left-button': 'undo',
-  'crop-button': 'cut',
+  'crop-button': 'crop',
 };
 
 const singleButton = (id) => {

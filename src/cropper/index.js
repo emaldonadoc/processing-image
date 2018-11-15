@@ -11,5 +11,5 @@ export const destroyCropper = () => {
 };
 
 export const buildCropper = (id) => {
-  cropper = new Cropper(document.getElementById(id), { aspectRatio: 16 / 9 });
+  cropper = new Cropper(document.getElementById(id));
 };
