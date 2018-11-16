@@ -16,10 +16,15 @@
 </body>
 
 <script>
-  function loadImage(e){
+  function loadImage(e) {
     e.preventDefault();
     e.stopPropagation();
-    app.default({ imgUrl: './skull.jpg'});
+    const saveCallback = (b64Image) => {
+      console.log('Executing save callback');
+      console.log({ b64Image });
+    };
+    const imgUrl = './skull.jpg';
+    app.default({ container: 'body', imgUrl, saveCallback });
   }
 </script>
 
