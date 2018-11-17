@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <button id="load-test" onclick="loadImage(event)">LOAD IMAGE</button>
+  <button id="load-test" onclick="loadImage(event)">LOAD IMAGE</button>  
 </body>
 
 <script>
@@ -23,7 +23,7 @@
       console.log('Executing save callback');
       console.log({ b64Image });
     };
-    const imgUrl = './skull.jpg';
+    const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/kubo-financiero-portal.appspot.com/o/accredited%2F17588%2F9461%2F1%2Fife_firma?alt=media&token=f02934cc-9fc9-4eea-bd81-4950a1cef7e9';
     app.default({ container: 'body', imgUrl, saveCallback });
   }
 </script>

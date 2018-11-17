@@ -25,8 +25,10 @@ describe('Edition image buttons', () => {
   });
 
   it('Should render edition buttons', () => {
-    const buttons = document.querySelectorAll('.edition-button');
-    expect(buttons.length).toBe(3);
+    const editionButtons = document.querySelectorAll('.edition-buttons-container > .edition-button');
+    const actionButtons = document.querySelectorAll('.action-buttons-container > .edition-button');
+    expect(editionButtons.length).toBe(3);
+    expect(actionButtons.length).toBe(1);
   });
 
   it('Should Call cropper.rotate on click rotateRightButton', () => {
