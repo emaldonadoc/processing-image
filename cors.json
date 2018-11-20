@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["dev.kubofinanciero.com", "www.kubofinanciero.com", "localhost"],
+    "method": ["GET"],
+    "maxAgeSeconds": 800
+  }
+]
