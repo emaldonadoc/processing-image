@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "dev": "kubo-financiero-portal",
+    "default": "kubo-financiero-portal"
+  },
+  "targets": {
+    "kubo-financiero-portal": {
+      "hosting": {
+        "cropper": [
+          "kubo-financiero-cropper"
+        ]
+      }
+    }
+  }
+}

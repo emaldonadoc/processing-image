@@ -17,7 +17,7 @@ module.exports = {
     port: 3031,
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'style.css' }),
+    new MiniCssExtractPlugin({ filename: 'cropper.style.css' }),
   ],
   module: {
     rules: [
