@@ -1,6 +1,7 @@
 ## FOLDERS
 node_modules/
 coverage/
+.firebase/
 
 ### FILES
 npm-debug.log

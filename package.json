@@ -7,6 +7,7 @@
     "tdd": "jest --watch",
     "test": "jest",
     "coverage": "jest --coverage",
+    "deploy": "firebase use dev; firebase deploy --only hosting:cropper",
     "build": "webpack --mode=development",
     "start": "parallelshell \"webpack --watch --mode development\" \"webpack-dev-server --color --mode=development\""
   },
@@ -28,6 +29,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
+    "firebase": "^5.5.8",
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.4",
     "parallelshell": "^3.0.2",
