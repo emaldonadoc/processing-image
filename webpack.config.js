@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './src/app.js',
   output: {
-    filename: 'app.bundle.js',
-    library: 'app',
+    filename: 'cropper.bundle.js',
+    library: 'cropper',
     path: path.join(__dirname, 'dist'),
     publicPath: './dist/',
   },

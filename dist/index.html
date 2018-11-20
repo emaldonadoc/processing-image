@@ -8,7 +8,7 @@
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./cropper.min.css">
   <link rel="stylesheet" type="text/css" href="./style.css">
-  <script src="./app.bundle.js"></script>
+  <script src="./cropper.bundle.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
       console.log({ b64Image });
     };
     const imgUrl = 'https://firebasestorage.googleapis.com/v0/b/kubo-financiero-portal.appspot.com/o/accredited%2F2774%2F652%2F6%2Fprofessional_license_back?alt=media&token=7f615d1d-272d-4534-ae3b-aad895c3e4db';
-    app.default({ container: 'body', imgUrl, saveCallback });
+    cropper.default({ container: 'body', imgUrl, saveCallback });
   }
 </script>
 
