@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["dev.kubofinanciero.com", "www.kubofinanciero.com", "localhost"],
+    "origin": ["dev.kubofinanciero.com", "www.kubofinanciero.com", "kubo-financiero-cropper.firebaseapp.com", "localhost"],
     "method": ["GET"],
     "maxAgeSeconds": 800
   }
