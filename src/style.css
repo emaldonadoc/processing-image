@@ -12,15 +12,12 @@ img {
   max-width: 100%;
 }
 
+
 .image-container {
   min-width: 300px;
   max-width: 700px;
   min-height: 300px;
   max-height: 900px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .image-container > .cropper-container {
@@ -91,6 +88,10 @@ img {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  left: 28%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  margin-top: 25%;
 }
 
 /* Safari */

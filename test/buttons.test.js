@@ -1,5 +1,5 @@
-import { buildButtons } from '../../src/buttons';
-import * as cropper from '../../src/cropper';
+import { buildButtons } from '../src/buttons';
+import * as cropper from '../src/cropper';
 
 jest.mock('../../src/cropper', () => ({
   rotateCropper: jest.fn(),
