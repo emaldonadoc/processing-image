@@ -34,7 +34,7 @@ describe('Modal builder', () => {
     const contentChild = modalContent.childNodes;
     expect(contentChild[0].innerText).toBe('x');
     expect(contentChild[1].innerText).toBe('Edición de Imagen');
-    expect(contentChild[2].innerHTML).toBe('<div class="loader"></div><img id="app" crossorigin="anonymous">');
+    expect(contentChild[2].innerHTML).toBe('<div class="loader"></div><img id="app">');
   });
 
   it('On Close button delete modal container', () => {
