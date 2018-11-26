@@ -8,13 +8,15 @@ jest.mock('../src/cropper', () => ({
   getCroppedB64FromCanvas: jest.fn(() => 'base64:dataimage'),
 }));
 
+const saveCallback = jest.fn();
+
 describe('Edition image buttons', () => {
   beforeEach(() => {
     document.body.innerHTML = '';
     const container = document.createElement('DIV');
     container.id = 'container';
     document.body.appendChild(container);
-    buildButtons(container);
+    buildButtons(container, saveCallback);
   });
 
   afterEach(() => {
@@ -50,5 +52,11 @@ describe('Edition image buttons', () => {
     expect(cropper.destroyCropper).toHaveBeenCalledTimes(1);
     expect(cropper.buildCropper).toHaveBeenCalledTimes(1);
     expect(img.src).toBe('base64:dataimage');
+  });
+
+  it('Should call saveCallback on click on save', () => {
+    document.querySelector('#save-button').click();
+    expect(cropper.getCroppedB64FromCanvas).toHaveBeenCalledTimes(1);
+    expect(saveCallback).toHaveBeenCalledTimes(1);
   });
 });

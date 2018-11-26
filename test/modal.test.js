@@ -38,6 +38,15 @@ describe('Modal builder', () => {
   });
 
   it('On Close button delete modal container', () => {
-    
+    const options = {
+      container: '#app',
+      imgUrl: 'imgUrl',
+      saveCallback: () => { },
+    };
+    modal(options);
+    document.querySelector('.close-button').click();
+
+    const modalContainer = document.querySelector('.modal');
+    expect(modalContainer).toBe(null);
   });
 });
