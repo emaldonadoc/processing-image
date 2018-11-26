@@ -4,7 +4,6 @@ import { buildButtons } from '../buttons';
 const urlToB64Data = (url, imgToRender) => {
   const canvas = document.createElement('CANVAS');
   const img = document.createElement('IMG');
-  img.setAttribute('crossorigin', 'anonymous');
   img.src = url;
   img.onload = () => {
     canvas.height = img.height;
@@ -24,7 +23,6 @@ const loadFirebaseImage = (imgUrl, saveCallback) => {
 
   const img = document.createElement('IMG');
   img.id = 'app';
-  img.setAttribute('crossorigin', 'anonymous');
 
   urlToB64Data(imgUrl, img);
   img.onload = () => {
