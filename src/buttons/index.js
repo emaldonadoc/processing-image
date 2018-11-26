@@ -6,10 +6,22 @@ import {
 } from '../cropper';
 
 const fontAwesomeMap = {
-  'rotate-right-button': 'repeat',
-  'rotate-left-button': 'undo',
-  'crop-button': 'crop',
-  'save-button': 'check',
+  'rotate-right-button': {
+    icon: 'repeat',
+    text: '+45°',
+  },
+  'rotate-left-button': {
+    icon: 'undo',
+    text: '-45°',
+  },
+  'crop-button': {
+    icon: 'crop',
+    text: 'cortar',
+  },
+  'save-button': {
+    icon: 'check',
+    text: 'finalizar',
+  },
 };
 
 const singleButton = (id) => {
@@ -18,7 +30,14 @@ const singleButton = (id) => {
   button.id = id;
   const i = document.createElement('I');
   i.classList.add('fa');
-  i.classList.add(`fa-${fontAwesomeMap[id]}`);
+  i.classList.add(`fa-${fontAwesomeMap[id].icon}`);
+  const p = document.createElement('P');
+  p.style.fontSize = '15px';
+  p.style.position = 'absolute';
+  p.style.padding = '0';
+  p.style.margin = '7px 0 0 0';
+  p.innerText = fontAwesomeMap[id].text;
+  i.appendChild(p);
   button.appendChild(i);
   return button;
 };
