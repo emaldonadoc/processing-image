@@ -14,9 +14,9 @@ img {
 
 
 .image-container {
-  min-width: 300px;
-  max-width: 700px;
-  min-height: 300px;
+  min-width: 800px;
+  max-width: 1000px;
+  min-height: 700px;
   max-height: 900px;
 }
 
@@ -88,10 +88,10 @@ img {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-  left: 28%;
+  left: 40%;
   transform: translate(-50%, -50%);
-  position: relative;
-  margin-top: 25%;
+  position: absolute;
+  margin-top: 30%;
 }
 
 /* Safari */

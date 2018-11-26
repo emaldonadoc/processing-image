@@ -4,7 +4,8 @@ import { buildButtons } from '../buttons';
 const urlToB64Data = (url, imgToRender) => {
   const canvas = document.createElement('CANVAS');
   const img = document.createElement('IMG');
-  img.src = url;
+  img.setAttribute('crossOrigin', 'anonymous');
+  img.src = `https://cors-anywhere.herokuapp.com/${url}`;
   img.onload = () => {
     canvas.height = img.height;
     canvas.width = img.width;
