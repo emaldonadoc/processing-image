@@ -33,6 +33,7 @@ const iconsTextButtonsMap = {
 };
 
 let globalContainer;
+let globalsaveCallback;
 
 const singleButton = (id) => {
   const button = document.createElement('DIV');
@@ -90,7 +91,11 @@ const cancelButton = () => {
   cancel.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('cancel button click');
+    buildCropper('app');
+    document.querySelector('.modal-title').innerText = 'Edición de Imagen';
+    document.querySelector('.edition-buttons-container').style.display = 'block';
+    const savingContainer = document.querySelector('.saving-container');
+    savingContainer.parentElement.removeChild(savingContainer);
   });
   return cancel;
 };
@@ -100,7 +105,7 @@ const saveButton = () => {
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('save button click');
+    globalsaveCallback(document.querySelector('#app').src);
   });
   return save;
 };
@@ -135,17 +140,18 @@ const finishEditionButton = () => {
   return finish;
 };
 
-const editionButtons = (saveCallback) => {
+const editionButtons = () => {
   const editionButtonsContainer = document.createElement('DIV');
   editionButtonsContainer.className = 'edition-buttons-container';
   editionButtonsContainer.appendChild(rotateLeftButton());
   editionButtonsContainer.appendChild(rotateRightButton());
   editionButtonsContainer.appendChild(cropButton());
-  editionButtonsContainer.appendChild(finishEditionButton(saveCallback));
+  editionButtonsContainer.appendChild(finishEditionButton());
   return editionButtonsContainer;
 };
 
 export const buildButtons = (container, saveCallback) => {
   globalContainer = container;
+  globalsaveCallback = saveCallback;
   globalContainer.prepend(editionButtons(saveCallback));
 };

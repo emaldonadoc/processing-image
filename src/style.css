@@ -51,7 +51,7 @@ img {
   margin: 0px 3px;
   padding: 1px 8px;
   color: #525852;
-  font-size: 2.5em;
+  font-size: 30px;
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -92,6 +92,9 @@ img {
 }
 
 .saving-container {
+  position: fixed;
+  width: 100%;
+  bottom: 30px;
   margin-top: 22px;
   text-align: center;
 }
