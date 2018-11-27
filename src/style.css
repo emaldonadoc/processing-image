@@ -10,8 +10,10 @@
 
 img {
   max-width: 100%;
+  display: block;
+  border: 1px solid #525852;
+  margin: 30px auto 0 auto;
 }
-
 
 .image-container {
   min-width: 800px;
@@ -35,6 +37,9 @@ img {
 .action-buttons-container {
   text-align: center;
   padding: 5px 0px;
+  position: fixed;
+  bottom: 14px;
+  width: 100%;
 }
 
 .action-buttons-container > .edition-button {
@@ -79,6 +84,24 @@ img {
 .edition-button:active {
 	position:relative;
 	top:1px;
+}
+
+#finish-button {
+  float: right;
+  display: none;
+}
+
+.saving-container {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.saving-message {
+  padding-bottom: 10px;
+}
+
+.saving-container .edition-button {
+  margin: 0 20px 0 20px;
 }
 
 .loader {

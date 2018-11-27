@@ -56,6 +56,7 @@ const closeButton = () => {
 
 const title = () => {
   const t = document.createElement('H3');
+  t.className = 'modal-title';
   t.innerText = 'Edición de Imagen';
   return t;
 };

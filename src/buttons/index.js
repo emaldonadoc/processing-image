@@ -5,7 +5,7 @@ import {
   buildCropper,
 } from '../cropper';
 
-const fontAwesomeMap = {
+const iconsTextButtonsMap = {
   'rotate-right-button': {
     icon: 'repeat',
     text: '+45°',
@@ -18,11 +18,21 @@ const fontAwesomeMap = {
     icon: 'crop',
     text: 'cortar',
   },
-  'save-button': {
+  'finish-button': {
     icon: 'check',
     text: 'finalizar',
   },
+  'cancel-button': {
+    icon: 'close',
+    text: 'no',
+  },
+  'save-button': {
+    icon: 'save',
+    text: 'si',
+  },
 };
+
+let globalContainer;
 
 const singleButton = (id) => {
   const button = document.createElement('DIV');
@@ -30,13 +40,13 @@ const singleButton = (id) => {
   button.id = id;
   const i = document.createElement('I');
   i.classList.add('fa');
-  i.classList.add(`fa-${fontAwesomeMap[id].icon}`);
+  i.classList.add(`fa-${iconsTextButtonsMap[id].icon}`);
   const p = document.createElement('P');
   p.style.fontSize = '15px';
   p.style.position = 'absolute';
   p.style.padding = '0';
   p.style.margin = '7px 0 0 0';
-  p.innerText = fontAwesomeMap[id].text;
+  p.innerText = iconsTextButtonsMap[id].text;
   i.appendChild(p);
   button.appendChild(i);
   return button;
@@ -67,6 +77,7 @@ const cropButton = () => {
   crop.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
+    document.querySelector('#finish-button').style.display = 'block';
     document.getElementById('app').src = getCroppedB64FromCanvas();
     destroyCropper();
     buildCropper('app');
@@ -74,34 +85,67 @@ const cropButton = () => {
   return crop;
 };
 
-const saveButton = (saveCallback) => {
+const cancelButton = () => {
+  const cancel = singleButton('cancel-button');
+  cancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('cancel button click');
+  });
+  return cancel;
+};
+
+const saveButton = () => {
   const save = singleButton('save-button');
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const b64ImageCrooped = getCroppedB64FromCanvas();
-    saveCallback(b64ImageCrooped);
+    console.log('save button click');
   });
   return save;
 };
 
-const editionButtons = () => {
+const alertSavingContainer = () => {
+  const savingContainer = document.createElement('DIV');
+  savingContainer.className = 'saving-container';
+  const text = document.createElement('DIV');
+  text.className = 'saving-message';
+  text.innerText = '¿Esta seguro de guardar esta imagen?';
+  savingContainer.appendChild(text);
+  const savingButtonsContainer = document.createElement('DIV');
+  savingButtonsContainer.className = 'saving-buttons-container';
+  savingButtonsContainer.appendChild(cancelButton());
+  savingButtonsContainer.appendChild(saveButton());
+  savingContainer.appendChild(savingButtonsContainer);
+  globalContainer.appendChild(savingContainer);
+};
+
+
+const finishEditionButton = () => {
+  const finish = singleButton('finish-button');
+  finish.style.display = 'none';
+  finish.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.edition-buttons-container').style.display = 'none';
+    document.querySelector('.modal-title').innerText = 'Preview';
+    destroyCropper();
+    alertSavingContainer();
+  });
+  return finish;
+};
+
+const editionButtons = (saveCallback) => {
   const editionButtonsContainer = document.createElement('DIV');
   editionButtonsContainer.className = 'edition-buttons-container';
   editionButtonsContainer.appendChild(rotateLeftButton());
   editionButtonsContainer.appendChild(rotateRightButton());
   editionButtonsContainer.appendChild(cropButton());
+  editionButtonsContainer.appendChild(finishEditionButton(saveCallback));
   return editionButtonsContainer;
 };
 
-const actionsButton = (saveCallback) => {
-  const actionsButtonsContainer = document.createElement('DIV');
-  actionsButtonsContainer.className = 'action-buttons-container';
-  actionsButtonsContainer.appendChild(saveButton(saveCallback));
-  return actionsButtonsContainer;
-};
-
 export const buildButtons = (container, saveCallback) => {
-  container.prepend(editionButtons());
-  container.appendChild(actionsButton(saveCallback));
+  globalContainer = container;
+  globalContainer.prepend(editionButtons(saveCallback));
 };
