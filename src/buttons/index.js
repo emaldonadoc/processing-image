@@ -1,3 +1,4 @@
+import b64ToBlob from 'b64-to-blob';
 import {
   rotateCropper,
   getCroppedB64FromCanvas,
@@ -5,12 +6,35 @@ import {
   buildCropper,
 } from '../cropper';
 
-const fontAwesomeMap = {
-  'rotate-right-button': 'repeat',
-  'rotate-left-button': 'undo',
-  'crop-button': 'crop',
-  'save-button': 'check',
+const iconsTextButtonsMap = {
+  'rotate-right-button': {
+    icon: 'repeat',
+    text: '+45°',
+  },
+  'rotate-left-button': {
+    icon: 'undo',
+    text: '-45°',
+  },
+  'crop-button': {
+    icon: 'crop',
+    text: 'cortar',
+  },
+  'finish-button': {
+    icon: 'check',
+    text: 'finalizar',
+  },
+  'cancel-button': {
+    icon: 'close',
+    text: 'no',
+  },
+  'save-button': {
+    icon: 'save',
+    text: 'si',
+  },
 };
+
+let globalContainer;
+let globalsaveCallback;
 
 const singleButton = (id) => {
   const button = document.createElement('DIV');
@@ -18,7 +42,14 @@ const singleButton = (id) => {
   button.id = id;
   const i = document.createElement('I');
   i.classList.add('fa');
-  i.classList.add(`fa-${fontAwesomeMap[id]}`);
+  i.classList.add(`fa-${iconsTextButtonsMap[id].icon}`);
+  const p = document.createElement('P');
+  p.style.fontSize = '15px';
+  p.style.position = 'absolute';
+  p.style.padding = '0';
+  p.style.margin = '7px 0 0 0';
+  p.innerText = iconsTextButtonsMap[id].text;
+  i.appendChild(p);
   button.appendChild(i);
   return button;
 };
@@ -48,6 +79,7 @@ const cropButton = () => {
   crop.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
+    document.querySelector('#finish-button').style.display = 'block';
     document.getElementById('app').src = getCroppedB64FromCanvas();
     destroyCropper();
     buildCropper('app');
@@ -55,15 +87,71 @@ const cropButton = () => {
   return crop;
 };
 
-const saveButton = (saveCallback) => {
+const cancelButton = () => {
+  const cancel = singleButton('cancel-button');
+  cancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    buildCropper('app');
+    document.querySelector('.modal-title').innerText = 'Edición de Imagen';
+    document.querySelector('.edition-buttons-container').style.display = 'block';
+    const savingContainer = document.querySelector('.saving-container');
+    savingContainer.parentElement.removeChild(savingContainer);
+  });
+  return cancel;
+};
+
+const getBlobObj = () => {
+  const b64Data = document.querySelector('#app').src;
+  const b64Parts = b64Data.split(',');
+  const b64String = b64Parts[1];
+  const content = b64Parts[0].split(';')[0].split(':')[1];
+  return b64ToBlob(b64String, content);
+};
+
+const saveButton = () => {
   const save = singleButton('save-button');
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const b64ImageCrooped = getCroppedB64FromCanvas();
-    saveCallback(b64ImageCrooped);
+
+    globalsaveCallback(getBlobObj());
   });
   return save;
+};
+
+const savingButtons = () => {
+  const savingButtonsContainer = document.createElement('DIV');
+  savingButtonsContainer.className = 'saving-buttons-container';
+  savingButtonsContainer.appendChild(cancelButton());
+  savingButtonsContainer.appendChild(saveButton());
+
+  return savingButtonsContainer;
+};
+
+const savingContainerBuilder = () => {
+  const savingContainer = document.createElement('DIV');
+  savingContainer.className = 'saving-container';
+  const text = document.createElement('DIV');
+  text.className = 'saving-message';
+  text.innerText = '¿Esta seguro de guardar esta imagen?';
+  savingContainer.appendChild(text);
+  savingContainer.appendChild(savingButtons());
+  globalContainer.appendChild(savingContainer);
+};
+
+const finishEditionButton = () => {
+  const finish = singleButton('finish-button');
+  finish.style.display = 'none';
+  finish.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    document.querySelector('.edition-buttons-container').style.display = 'none';
+    document.querySelector('.modal-title').innerText = 'Preview';
+    destroyCropper();
+    savingContainerBuilder();
+  });
+  return finish;
 };
 
 const editionButtons = () => {
@@ -72,17 +160,12 @@ const editionButtons = () => {
   editionButtonsContainer.appendChild(rotateLeftButton());
   editionButtonsContainer.appendChild(rotateRightButton());
   editionButtonsContainer.appendChild(cropButton());
+  editionButtonsContainer.appendChild(finishEditionButton());
   return editionButtonsContainer;
 };
 
-const actionsButton = (saveCallback) => {
-  const actionsButtonsContainer = document.createElement('DIV');
-  actionsButtonsContainer.className = 'action-buttons-container';
-  actionsButtonsContainer.appendChild(saveButton(saveCallback));
-  return actionsButtonsContainer;
-};
-
 export const buildButtons = (container, saveCallback) => {
-  container.prepend(editionButtons());
-  container.appendChild(actionsButton(saveCallback));
+  globalContainer = container;
+  globalsaveCallback = saveCallback;
+  globalContainer.prepend(editionButtons(saveCallback));
 };

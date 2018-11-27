@@ -10,20 +10,30 @@
 
 img {
   max-width: 100%;
+  max-height: 80%;
+  display: block;
+  border: 1px solid #525852;
+  margin: 50px auto 0 auto;
+}
+
+.modal-title {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 9px 0;
+  border-bottom: 1px solid #808080d1;
 }
 
 .image-container {
-  min-width: 300px;
-  max-width: 700px;
-  min-height: 300px;
+  min-width: 800px;
+  max-width: 1000px;
+  min-height: 650px;
   max-height: 900px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin-bottom: 1em;
 }
 
 .image-container > .cropper-container {
+  margin: 15px 0 0 0;
   border: 3px solid #525852;
   -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.75);
@@ -31,12 +41,15 @@ img {
 }
 
 .edition-buttons-container {
-  padding: 4px 0px;
+  padding: 10px 0 5px 0;
 }
 
 .action-buttons-container {
   text-align: center;
   padding: 5px 0px;
+  position: fixed;
+  bottom: 14px;
+  width: 100%;
 }
 
 .action-buttons-container > .edition-button {
@@ -48,7 +61,7 @@ img {
   margin: 0px 3px;
   padding: 1px 8px;
   color: #525852;
-  font-size: 2.5em;
+  font-size: 1.8em;
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -83,6 +96,25 @@ img {
 	top:1px;
 }
 
+#finish-button {
+  float: right;
+  display: none;
+}
+
+.saving-container {
+  width: 100%;
+  margin-top: 22px;
+  text-align: center;
+}
+
+.saving-message {
+  padding-bottom: 10px;
+}
+
+.saving-container .edition-button {
+  margin: 0 20px 0 20px;
+}
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -91,6 +123,10 @@ img {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  margin-top: 30%;
 }
 
 /* Safari */
