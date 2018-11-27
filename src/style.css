@@ -10,16 +10,26 @@
 
 img {
   max-width: 100%;
+  max-height: 80%;
   display: block;
   border: 1px solid #525852;
-  margin: 30px auto 0 auto;
+  margin: 50px auto 0 auto;
+}
+
+.modal-title {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 9px 0;
+  border-bottom: 1px solid #808080d1;
 }
 
 .image-container {
   min-width: 800px;
   max-width: 1000px;
-  min-height: 700px;
+  min-height: 650px;
   max-height: 900px;
+  margin-bottom: 1em;
 }
 
 .image-container > .cropper-container {
@@ -51,7 +61,7 @@ img {
   margin: 0px 3px;
   padding: 1px 8px;
   color: #525852;
-  font-size: 30px;
+  font-size: 1.8em;
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -92,9 +102,7 @@ img {
 }
 
 .saving-container {
-  position: fixed;
   width: 100%;
-  bottom: 30px;
   margin-top: 22px;
   text-align: center;
 }
