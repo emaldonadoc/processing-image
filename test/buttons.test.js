@@ -8,6 +8,8 @@ jest.mock('../src/cropper', () => ({
   getCroppedB64FromCanvas: jest.fn(() => 'base64:dataimage'),
 }));
 
+jest.mock('b64-to-blob', () => () => 'blobObj');
+
 const saveCallback = jest.fn();
 
 describe('Edition image buttons', () => {

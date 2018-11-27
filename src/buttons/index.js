@@ -1,3 +1,4 @@
+import b64ToBlob from 'b64-to-blob';
 import {
   rotateCropper,
   getCroppedB64FromCanvas,
@@ -100,12 +101,21 @@ const cancelButton = () => {
   return cancel;
 };
 
+const getBlobObj = () => {
+  const b64Data = document.querySelector('#app').src;
+  const b64Parts = b64Data.split(',');
+  const b64String = b64Parts[1];
+  const content = b64Parts[0].split(';')[0].split(':')[1];
+  return b64ToBlob(b64String, content);
+};
+
 const saveButton = () => {
   const save = singleButton('save-button');
   save.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    globalsaveCallback(document.querySelector('#app').src);
+
+    globalsaveCallback(getBlobObj());
   });
   return save;
 };
