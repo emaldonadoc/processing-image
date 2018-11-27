@@ -110,18 +110,23 @@ const saveButton = () => {
   return save;
 };
 
-const alertSavingContainer = () => {
+const savingButtons = () => {
+  const savingButtonsContainer = document.createElement('DIV');
+  savingButtonsContainer.className = 'saving-buttons-container';
+  savingButtonsContainer.appendChild(cancelButton());
+  savingButtonsContainer.appendChild(saveButton());
+
+  return savingButtonsContainer;
+};
+
+const savingContainerBuilder = () => {
   const savingContainer = document.createElement('DIV');
   savingContainer.className = 'saving-container';
   const text = document.createElement('DIV');
   text.className = 'saving-message';
   text.innerText = '¿Esta seguro de guardar esta imagen?';
   savingContainer.appendChild(text);
-  const savingButtonsContainer = document.createElement('DIV');
-  savingButtonsContainer.className = 'saving-buttons-container';
-  savingButtonsContainer.appendChild(cancelButton());
-  savingButtonsContainer.appendChild(saveButton());
-  savingContainer.appendChild(savingButtonsContainer);
+  savingContainer.appendChild(savingButtons());
   globalContainer.appendChild(savingContainer);
 };
 
@@ -134,7 +139,7 @@ const finishEditionButton = () => {
     document.querySelector('.edition-buttons-container').style.display = 'none';
     document.querySelector('.modal-title').innerText = 'Preview';
     destroyCropper();
-    alertSavingContainer();
+    savingContainerBuilder();
   });
   return finish;
 };
