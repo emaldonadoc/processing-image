@@ -4,6 +4,8 @@ coverage/
 .firebase/
 
 ### FILES
+package-lock.json
 npm-debug.log
+dist/*.jpeg
 dist/*.js
 dist/*.css
