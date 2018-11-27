@@ -125,7 +125,6 @@ const alertSavingContainer = () => {
   globalContainer.appendChild(savingContainer);
 };
 
-
 const finishEditionButton = () => {
   const finish = singleButton('finish-button');
   finish.style.display = 'none';

@@ -28,9 +28,7 @@ describe('Edition image buttons', () => {
 
   it('Should render edition buttons', () => {
     const editionButtons = document.querySelectorAll('.edition-buttons-container > .edition-button');
-    const actionButtons = document.querySelectorAll('.action-buttons-container > .edition-button');
-    expect(editionButtons.length).toBe(3);
-    expect(actionButtons.length).toBe(1);
+    expect(editionButtons.length).toBe(4);
   });
 
   it('Should Call cropper.rotate on click rotateRightButton', () => {
@@ -54,9 +52,50 @@ describe('Edition image buttons', () => {
     expect(img.src).toBe('base64:dataimage');
   });
 
-  it('Should call saveCallback on click on save', () => {
+  it('Should Change modal title, hide buttons and create saving-container', () => {
+    const title = document.createElement('DIV');
+    title.className = 'modal-title';
+    document.body.appendChild(title);
+
+    document.querySelector('#finish-button').click();
+
+    expect(title.innerText).toBe('Preview');
+    expect(document.querySelector('.edition-buttons-container').style.display)
+      .toBe('none');
+    expect(cropper.destroyCropper).toHaveBeenCalledTimes(1);
+    expect(document.querySelector('.saving-container')).not.toBe(null);
+  });
+
+  it('Should call saveCallback on save-button click', () => {
+    const title = document.createElement('DIV');
+    title.className = 'modal-title';
+    const img = document.createElement('IMG');
+    img.id = 'app';
+    img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEU';
+    document.body.appendChild(title);
+    document.body.appendChild(img);
+
+    document.querySelector('#finish-button').click();
     document.querySelector('#save-button').click();
-    expect(cropper.getCroppedB64FromCanvas).toHaveBeenCalledTimes(1);
+
     expect(saveCallback).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should build cropper, return title, remove saving-container and show buttons on cancel click', () => {
+    const title = document.createElement('DIV');
+    title.className = 'modal-title';
+    const img = document.createElement('IMG');
+    img.id = 'app';
+    img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEU';
+    document.body.appendChild(title);
+    document.body.appendChild(img);
+
+    document.querySelector('#finish-button').click();
+    document.querySelector('#cancel-button').click();
+
+    expect(title.innerText).toBe('Edición de Imagen');
+    expect(document.querySelector('.edition-buttons-container').style.display).toBe('block');
+    expect(cropper.buildCropper).toHaveBeenCalledTimes(1);
+    expect(document.querySelector('.saving-container')).toBe(null);
   });
 });
